@@ -11,7 +11,13 @@ class MethodChannelLpmScan extends LpmScanPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
+  }
+
+  @override
+  Future<bool?> startScan() async {
+    return await methodChannel.invokeMethod<bool>('startScan');
   }
 }

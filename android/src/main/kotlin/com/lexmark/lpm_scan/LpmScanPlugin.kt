@@ -35,15 +35,16 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
+    if (call.method == "startScan") {
+      activity?.startActivity(Intent(activity, ScanActivity::class.java))
+    }
+    else if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
 
 //      val scanConfiguration = ScanConfiguration().apply {
 //        multiPage = true
 //      }
 //      ScanFlow.scanWithConfiguration(activity, scanConfiguration)
-
-      activity?.startActivity(Intent(activity, ScanActivity::class.java))
     } else {
       result.notImplemented()
     }

@@ -1,15 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lpm_scan/lpm_scan.dart';
-import 'package:lpm_scan/lpm_scan_platform_interface.dart';
 import 'package:lpm_scan/lpm_scan_method_channel.dart';
+import 'package:lpm_scan/lpm_scan_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockLpmScanPlatform
     with MockPlatformInterfaceMixin
     implements LpmScanPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+
+  @override
+  Future<bool?> startScan() => Future.value(true);
 }
 
 void main() {
