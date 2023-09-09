@@ -64,9 +64,7 @@ class BorderDetectionActivity : AppCompatActivity() {
 
     fun select(view: View?) {
         page.quadrangle = imageView.quad
-        val intent = Intent(this, ImageProcessingActivity::class.java)
-        intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page)
-        startActivity(intent)
+        // TODO: update DocumentManager to reflect changes done here.]
         finish()
     }
 

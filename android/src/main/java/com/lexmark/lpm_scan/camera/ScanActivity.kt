@@ -27,6 +27,7 @@ import com.geniusscansdk.core.LicenseException
 import com.geniusscansdk.core.QuadStreamAnalyzer
 import com.geniusscansdk.core.RotationAngle
 import com.lexmark.lpm_scan.R
+import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
 import com.lexmark.lpm_scan.processing.BorderDetectionActivity
 import com.lexmark.lpm_scan.model.Page
 import java.io.File
@@ -171,8 +172,8 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
             } else if (exception != null) {
                 throw RuntimeException(exception)
             } else {
-                val intent = Intent(this@ScanActivity, BorderDetectionActivity::class.java)
-                intent.putExtra(BorderDetectionActivity.EXTRA_PAGE, page)
+                val intent = Intent(this@ScanActivity, ImageProcessingActivity::class.java)
+                intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page)
                 startActivity(intent)
 
             }

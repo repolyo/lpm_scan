@@ -15,6 +15,7 @@ import com.geniusscansdk.core.RotationAngle
 import com.lexmark.lpm_scan.R
 import com.lexmark.lpm_scan.model.DocumentManager
 import com.lexmark.lpm_scan.model.Page
+import com.lexmark.lpm_scan.processing.BorderDetectionActivity
 import io.flutter.embedding.android.FlutterActivity
 import java.io.File
 
@@ -122,6 +123,12 @@ class ImageProcessingActivity : AppCompatActivity() {
 
     fun rotateRight(view: View?) {
         rotate(RotationAngle.ROTATION_90_CW)
+    }
+
+    fun crop(view: View?) {
+        val intent = Intent(this@ImageProcessingActivity, BorderDetectionActivity::class.java)
+        intent.putExtra(BorderDetectionActivity.EXTRA_PAGE, page)
+        startActivity(intent)
     }
 
     fun savePage(view: View?) {
