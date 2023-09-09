@@ -30,4 +30,10 @@ abstract class LpmScanPlatform extends PlatformInterface {
   Future<bool?> startScan() {
     throw UnimplementedError('startScan() has not been implemented.');
   }
+
+  Future<Map<String, dynamic>?> scanWithConfiguration(
+      Map<String, dynamic> configuration) {
+    throw UnimplementedError(
+        'scanWithConfiguration($configuration) has not been implemented.');
+  }
 }

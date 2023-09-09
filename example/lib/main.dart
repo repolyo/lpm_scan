@@ -49,10 +49,17 @@ class _MyAppState extends State<MyApp> {
 
   initiateScan() async {
     try {
-      await _lpmScanPlugin.startScan();
-    } catch (e) {
-      print(e);
+      await _lpmScanPlugin.scanWithConfiguration(configuration: {
+        'rotate': false,
+      });
+    } on PlatformException catch (error) {
+      displayError(context, error);
     }
+  }
+
+  void displayError(BuildContext context, PlatformException error) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(error.message!)));
   }
 
   @override

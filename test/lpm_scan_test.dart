@@ -12,6 +12,11 @@ class MockLpmScanPlatform
 
   @override
   Future<bool?> startScan() => Future.value(true);
+
+  @override
+  Future<Map<String, dynamic>?> scanWithConfiguration(
+          Map<String, dynamic> config) =>
+      Future.value({});
 }
 
 void main() {

@@ -20,4 +20,11 @@ class MethodChannelLpmScan extends LpmScanPlatform {
   Future<bool?> startScan() async {
     return await methodChannel.invokeMethod<bool>('startScan');
   }
+
+  @override
+  Future<Map<String, dynamic>?> scanWithConfiguration(
+      Map<String, dynamic> configuration) async {
+    return await methodChannel
+        .invokeMethod<Map<String, dynamic>>('scanWithConfiguration');
+  }
 }
