@@ -51,6 +51,9 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
     if (call.method == "scanWithConfiguration") {
       scanWithConfig(call, result)
     }
+    else if (call.method == "generateDocument") {
+      generateDocument(call, result);
+    }
     else if (call.method == "startScan") {
       activity?.startActivity(Intent(activity, ScanActivity::class.java))
       result.success(true);
@@ -119,6 +122,11 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
     intent.putExtra("detection_status", detectionStatus)
 
     activity?.startActivity(intent)
+    poResult.success(emptyMap<String, Object>())
+  }
+
+  private fun generateDocument(poCall: MethodCall, poResult: Result) {
+    // TODO: implementation
     poResult.success(emptyMap<String, Object>())
   }
 }

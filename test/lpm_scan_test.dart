@@ -17,6 +17,10 @@ class MockLpmScanPlatform
   Future<Map<String, dynamic>?> scanWithConfiguration(
           Map<String, dynamic> config) =>
       Future.value({});
+
+  @override
+  Future<Map<String, dynamic>?> generateDocument(Map<String, dynamic> config) =>
+      Future.value({});
 }
 
 void main() {

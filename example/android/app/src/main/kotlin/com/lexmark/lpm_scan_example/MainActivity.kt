@@ -2,9 +2,9 @@ package com.lexmark.lpm_scan_example
 
 import android.content.Intent
 import android.os.Bundle
-import com.geniusscansdk.core.GeniusScanSDK
-import com.geniusscansdk.core.LicenseException
-import com.geniusscansdk.scanflow.ScanFlow
+//import com.geniusscansdk.core.GeniusScanSDK
+//import com.geniusscansdk.core.LicenseException
+//import com.geniusscansdk.scanflow.ScanFlow
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity: FlutterActivity() {

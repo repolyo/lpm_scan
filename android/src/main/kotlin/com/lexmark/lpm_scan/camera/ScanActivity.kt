@@ -17,8 +17,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.fragment.app.FragmentActivity
 import com.geniusscansdk.camera.FileImageCaptureCallback
 import com.geniusscansdk.camera.FocusIndicator
 import com.geniusscansdk.camera.ScanFragment
@@ -28,7 +26,6 @@ import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.LicenseException
 import com.geniusscansdk.core.QuadStreamAnalyzer
 import com.geniusscansdk.core.RotationAngle
-import com.lexmark.lpm_scan.BuildConfig
 import com.lexmark.lpm_scan.R
 import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
 import com.lexmark.lpm_scan.model.DocumentManager
@@ -99,7 +96,7 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), PERMISSION_REQUEST_CODE)
         }
 
-        doneButton.isEnabled = DocumentManager.getInstance(this).pages.isNotEmpty()
+//        doneButton.isEnabled = DocumentManager.getInstance(this).pages.isNotEmpty()
     }
 
     override fun onResume() {
@@ -138,7 +135,9 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
 
         builder.setTitle("Cancel")
         builder.setMessage("Aborting scan operation?")
-        builder.setPositiveButton(android.R.string.ok, positiveButtonClick)
+        builder.setPositiveButton(android.R.string.ok, { _: DialogInterface, _: Int ->
+            finish()
+        })
 
         builder.show()
     }

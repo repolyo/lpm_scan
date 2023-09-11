@@ -1,4 +1,5 @@
 package com.lexmark.lpm_scan.model;
+
 import android.content.Context;
 
 import java.io.File;

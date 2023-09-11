@@ -27,4 +27,11 @@ class MethodChannelLpmScan extends LpmScanPlatform {
     return await methodChannel.invokeMethod<Map<String, dynamic>>(
         'scanWithConfiguration', configuration);
   }
+
+  @override
+  Future<Map<String, dynamic>?> generateDocument(
+      Map<String, dynamic> documentGenerationConfiguration) async {
+    return await methodChannel.invokeMethod<Map<String, dynamic>>(
+        'generateDocument', documentGenerationConfiguration);
+  }
 }

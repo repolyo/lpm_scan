@@ -15,4 +15,10 @@ class LpmScan {
       {Map<String, dynamic> configuration = defaultConfig}) {
     return LpmScanPlatform.instance.scanWithConfiguration(configuration);
   }
+
+  Future<Map<String, dynamic>?> generateDocument(
+      {Map<String, dynamic> configuration = defaultConfig}) {
+    // var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };
+    return LpmScanPlatform.instance.generateDocument(configuration);
+  }
 }

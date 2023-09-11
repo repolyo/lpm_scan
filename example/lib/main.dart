@@ -49,10 +49,38 @@ class _MyAppState extends State<MyApp> {
 
   initiateScan() async {
     try {
-      await _lpmScanPlugin.scanWithConfiguration(configuration: {
+      final scanConfiguration = {
+        'source': 'camera',
+        'multiPage': true,
+        'ocrConfiguration': {
+          'languages': ['eng'],
+          'languagesDirectoryUrl': 'languageFolder.path'
+        },
         'scan_button_text': 'Scan Me',
         'detection_status': 'Align tanch to fit screen...',
-      });
+      };
+
+      var scanResult = await _lpmScanPlugin.scanWithConfiguration(
+          configuration: scanConfiguration);
+
+      // Here is how you can display the resulting document:
+      String documentUrl = scanResult?['multiPageDocumentUrl'];
+      // await OpenFile.open(documentUrl.replaceAll("file://", ''));
+
+      // You can also generate your document separately from selected pages:
+      /*
+          var appFolder = await getApplicationDocumentsDirectory();
+          var documentUrl = appFolder.path + '/mydocument.pdf';
+          var document = {
+            'pages': [{
+              'imageUrl': scanResult['scans'][0]['enhancedUrl'] ,
+              'hocrTextLayout': scanResult['scans'][0]['ocrResult']['hocrTextLayout']
+            }]
+          };
+          var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };
+          await FlutterGeniusScan.generateDocument(document, documentGenerationConfiguration);
+          await OpenFile.open(documentUrl);
+          */
     } on PlatformException catch (error) {
       displayError(context, error);
     }
