@@ -6,24 +6,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://repo.gradle.org/gradle/libs-releases'
-            content {
-                includeModule('org.gradle', 'gradle-tooling-api') // for apkscale
-            }
-        }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-            content {
-                includeModule('firebase.test.lab', 'plugin')
-            }
-        }
-        maven {
-            url 'https://s3.amazonaws.com/tgl.maven'
-            content {
-                includeModule('com.twilio', 'apkscale')
-            }
-        }
     }
 
     dependencies {
@@ -32,11 +14,10 @@ buildscript {
     }
 }
 
-allprojects {
+rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        // Needed for public demo apps
         maven {
             url 'https://s3.amazonaws.com/tgl.maven'
             content {
@@ -71,10 +52,6 @@ android {
     }
 
     dependencies {
-        implementation 'com.geniusscansdk:gssdk-core:4.13.0'
-        implementation 'com.geniusscansdk:gssdk-scanflow:4.13.0'
-        implementation 'com.geniusscansdk:gssdk-ocr:+'
-
         implementation 'androidx.appcompat:appcompat:1.6.1'
         implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
@@ -99,6 +76,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.geniusscansdk:gssdk-core:+'
+    implementation 'com.geniusscansdk:gssdk-scanflow:+'
+    implementation 'com.geniusscansdk:gssdk-ocr:+'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

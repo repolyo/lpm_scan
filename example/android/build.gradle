@@ -15,12 +15,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://s3.amazonaws.com/tgl.maven'
-            content {
-                includeGroup('com.geniusscansdk')
-            }
-        }
     }
 }
 
