@@ -24,7 +24,7 @@ class MethodChannelLpmScan extends LpmScanPlatform {
   @override
   Future<Map<String, dynamic>?> scanWithConfiguration(
       Map<String, dynamic> configuration) async {
-    return await methodChannel
-        .invokeMethod<Map<String, dynamic>>('scanWithConfiguration');
+    return await methodChannel.invokeMethod<Map<String, dynamic>>(
+        'scanWithConfiguration', configuration);
   }
 }

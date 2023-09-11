@@ -70,5 +70,6 @@ flutter {
 dependencies {
     implementation 'com.geniusscansdk:gssdk-core:4.13.0'
     implementation 'com.geniusscansdk:gssdk-scanflow:4.13.0'
+    implementation 'com.geniusscansdk:gssdk-ocr:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

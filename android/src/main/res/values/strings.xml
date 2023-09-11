@@ -1,9 +1,12 @@
 <resources>
     <string name="title_activity_image_processing">ImageProcessingActivity</string>
     <!-- Strings used for fragments for navigation -->
+    <string name="cancel">CANCEL</string>
+    <string name="done">DONE</string>
     <string name="capture">Capture</string>
     <string name="detection_status_searching">Searching</string>
     <string name="detection_status_found">Found</string>
+    <string name="detection_status_custom">Align document to fit screen...</string>
     <string name="enhancement_dialog_title">Please select the enhancement to apply</string>
     <string name="image_type_none">None</string>
     <string name="image_type_color">Color</string>

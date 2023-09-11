@@ -73,6 +73,8 @@ android {
     dependencies {
         implementation 'com.geniusscansdk:gssdk-core:4.13.0'
         implementation 'com.geniusscansdk:gssdk-scanflow:4.13.0'
+        implementation 'com.geniusscansdk:gssdk-ocr:+'
+
         implementation 'androidx.appcompat:appcompat:1.6.1'
         implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 

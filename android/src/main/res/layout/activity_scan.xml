@@ -41,14 +41,31 @@
     tools:text="Detection status"
     />
 
-<Button
-    android:id="@+id/captureButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:layout_centerHorizontal="true"
-    android:layout_alignParentBottom="true"
-    android:text="@string/capture"
-    />
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_toLeftOf="@id/user_guidance"
+        android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/captureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/capture" />
+
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/user_guidance"
+        android:layout_marginBottom="20dp"
+        android:text="@string/done" />
 
 </RelativeLayout>

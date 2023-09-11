@@ -1,7 +1,9 @@
 package com.lexmark.lpm_scan
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.annotation.NonNull
 import com.geniusscansdk.scanflow.ScanConfiguration
 import com.geniusscansdk.scanflow.ScanFlow
@@ -18,7 +20,8 @@ import io.flutter.plugin.common.PluginRegistry
 
 
 /** LpmScanPlugin */
-class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener  {
+class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener,
+  PluginRegistry.RequestPermissionsResultListener {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -26,6 +29,14 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   private lateinit var channel : MethodChannel
   private var activity: FlutterActivity? = null
   private lateinit var context: Context
+
+  // Permission request management
+  private var requestingPermission = false
+  private var permissionRequestResultCallback: Result? = null
+
+  private fun initWithActivity(act: Activity) {
+    activity = act as FlutterActivity;
+  }
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context = flutterPluginBinding.applicationContext
@@ -35,11 +46,14 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    permissionRequestResultCallback = result;
+
     if (call.method == "scanWithConfiguration") {
-      activity?.startActivity(Intent(activity, ScanActivity::class.java))
+      scanWithConfig(call, result)
     }
     else if (call.method == "startScan") {
       activity?.startActivity(Intent(activity, ScanActivity::class.java))
+      result.success(true);
     }
     else if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
@@ -58,8 +72,9 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    this.activity = binding.activity as FlutterActivity
+    initWithActivity(binding.activity)
     binding.addActivityResultListener(this)
+//    binding.addRequestPermissionsResultListener(this)
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
@@ -67,8 +82,9 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   }
 
   override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    activity = binding.activity as FlutterActivity
+    initWithActivity(binding.activity)
     binding.addActivityResultListener(this)
+//    binding.addRequestPermissionsResultListener(this)
   }
 
   override fun onDetachedFromActivity() {
@@ -84,5 +100,25 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
       // There was an error during the scan flow. Check the exception for more details.
     }
     return true
+  }
+
+  override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+  ): Boolean {
+    val wasPermissionGranted = grantResults.isNotEmpty() && grantResults[0] === PackageManager.PERMISSION_GRANTED
+
+    requestingPermission = false;
+    return false;
+  }
+
+  private fun scanWithConfig(poCall: MethodCall, poResult: Result) {
+    val detectionStatus: String? = poCall.argument("detection_status")
+    val intent = Intent(activity, ScanActivity::class.java);
+    intent.putExtra("detection_status", detectionStatus)
+
+    activity?.startActivity(intent)
+    poResult.success(emptyMap<String, Object>())
   }
 }

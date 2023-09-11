@@ -50,7 +50,8 @@ class _MyAppState extends State<MyApp> {
   initiateScan() async {
     try {
       await _lpmScanPlugin.scanWithConfiguration(configuration: {
-        'rotate': false,
+        'scan_button_text': 'Scan Me',
+        'detection_status': 'Align tanch to fit screen...',
       });
     } on PlatformException catch (error) {
       displayError(context, error);

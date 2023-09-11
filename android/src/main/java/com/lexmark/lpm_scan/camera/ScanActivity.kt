@@ -17,6 +17,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import androidx.fragment.app.FragmentActivity
 import com.geniusscansdk.camera.FileImageCaptureCallback
 import com.geniusscansdk.camera.FocusIndicator
 import com.geniusscansdk.camera.ScanFragment
@@ -26,9 +28,10 @@ import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.LicenseException
 import com.geniusscansdk.core.QuadStreamAnalyzer
 import com.geniusscansdk.core.RotationAngle
+import com.lexmark.lpm_scan.BuildConfig
 import com.lexmark.lpm_scan.R
 import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
-import com.lexmark.lpm_scan.processing.BorderDetectionActivity
+import com.lexmark.lpm_scan.model.DocumentManager
 import com.lexmark.lpm_scan.model.Page
 import java.io.File
 import java.util.UUID
@@ -38,6 +41,17 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
     private lateinit var scanFragment: ScanFragment
     private var userGuidanceTextView: TextView? = null
     private var cameraPermissionGranted = false
+
+    private val positiveButtonClick = { _: DialogInterface, _: Int ->
+        Toast.makeText(applicationContext,
+            android.R.string.yes, Toast.LENGTH_SHORT).show()
+    }
+
+    private val negativeButtonClick = { dialog: DialogInterface, which: Int ->
+        Toast.makeText(applicationContext,
+            android.R.string.no, Toast.LENGTH_SHORT).show()
+    }
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Go full screen
@@ -45,6 +59,13 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         setContentView(R.layout.activity_scan)
         val captureButton = findViewById<Button>(R.id.captureButton)
         captureButton.setOnClickListener { view: View? -> takePicture() }
+
+        val cancelButton = findViewById<Button>(R.id.cancelButton)
+        cancelButton.setOnClickListener { view: View? -> onCancel() }
+
+        val doneButton = findViewById<Button>(R.id.doneButton)
+        doneButton.setOnClickListener { view: View? -> onComplete() }
+
         userGuidanceTextView = findViewById(R.id.user_guidance)
         val focusIndicator: FocusIndicator = findViewById(R.id.focus_indicator)
         scanFragment = ScanFragment.createBestForDevice()
@@ -77,6 +98,8 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         if (!cameraPermissionGranted) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), PERMISSION_REQUEST_CODE)
         }
+
+        doneButton.isEnabled = DocumentManager.getInstance(this).pages.isNotEmpty()
     }
 
     override fun onResume() {
@@ -110,19 +133,67 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         })
     }
 
+    private fun onCancel() {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("Cancel")
+        builder.setMessage("Aborting scan operation?")
+        builder.setPositiveButton(android.R.string.ok, positiveButtonClick)
+
+        builder.show()
+    }
+
+    private fun onComplete() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Leaving Lexmark App")
+        builder.setMessage("Your scan has saved. Redirecting to your files app.")
+        builder.setNegativeButton("Stay", negativeButtonClick)
+        builder.setPositiveButton("Continue", positiveButtonClick)
+        builder.show()
+    }
+
+    private fun shareDocument() {
+        val pages = DocumentManager.getInstance(this).pages
+        val outputFile = File(externalCacheDir, "test.pdf")
+//        PdfGenerationTask(this, pages, outputFile, ocrSwitch.isChecked()) label@{ isSuccess, error ->
+//            if (!isSuccess) {
+//                Log.e(FragmentActivity.TAG, "Error generating PDF", error)
+//                Toast.makeText(this@MainActivity, error.getMessage(), Toast.LENGTH_LONG)
+//                    .show()
+//                return@label
+//            }
+//
+//            // View generated PDF document with another compatible installed app
+//            val uri = FileProvider.getUriForFile(
+//                this@ScanActivity,
+//                BuildConfig.APPLICATION_ID + ".fileprovider",
+//                outputFile
+//            )
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+//            startActivity(intent)
+//        }.execute()
+    }
+
     private fun updateUserGuidance(result: QuadStreamAnalyzer.Result) {
         val textResId = getUserGuidanceResId(result)
         if (textResId == 0) {
             userGuidanceTextView!!.visibility = View.INVISIBLE
         } else {
             userGuidanceTextView!!.visibility = View.VISIBLE
-            userGuidanceTextView!!.setText(textResId)
+            val detectionStatus = intent.getStringExtra("detection_status")
+            if (textResId == R.string.detection_status_custom && null != detectionStatus) {
+                userGuidanceTextView!!.text = detectionStatus
+            }
+            else {
+                userGuidanceTextView!!.setText(textResId)
+            }
         }
     }
 
     private fun getUserGuidanceResId(result: QuadStreamAnalyzer.Result): Int {
         if (result.status == QuadStreamAnalyzer.Status.NOT_FOUND || result.resultQuadrangle == null) {
-            return R.string.detection_status_searching
+            return R.string.detection_status_custom
         } else if (result.status == QuadStreamAnalyzer.Status.SEARCHING || result.status == QuadStreamAnalyzer.Status.ABOUT_TO_TRIGGER) {
             return R.string.detection_status_found
         }
