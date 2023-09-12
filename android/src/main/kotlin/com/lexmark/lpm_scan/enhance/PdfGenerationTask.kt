@@ -88,7 +88,7 @@ open class PdfGenerationTask(
 
         return try {
             // Here we don't protect the PDF document with a password
-            val pdfDocument = PDFDocument("test", null, null, Date(), Date(), pdfPages)
+            val pdfDocument = PDFDocument(outputFile?.name ?: "test", null, null, Date(), Date(), pdfPages)
             val configuration = DocumentGenerator.Configuration(outputFile)
             DocumentGenerator(context).generatePDFDocument(pdfDocument, configuration)
             null

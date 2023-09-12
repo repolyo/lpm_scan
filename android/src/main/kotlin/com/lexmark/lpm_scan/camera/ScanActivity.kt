@@ -33,6 +33,7 @@ import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
 import com.lexmark.lpm_scan.enhance.PdfGenerationTask
 import com.lexmark.lpm_scan.model.DocumentManager
 import com.lexmark.lpm_scan.model.Page
+import com.lexmark.lpm_scan.model.ScanSettings
 import java.io.File
 import java.util.UUID
 
@@ -49,6 +50,7 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         // Go full screen
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_scan)
@@ -152,17 +154,10 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
     }
 
     private fun shareDocument() {
-        var pdfFilename: String? = intent.getStringExtra("pdfFilename")
-        var fileprovider: String? = intent.getStringExtra("fileprovider")
         val pages = DocumentManager.getInstance(this).pages
 
-        if (null == pdfFilename) {
-            pdfFilename = "test.pdf";
-        }
-
-        val outputFile = File(externalCacheDir, pdfFilename)
-        val ocr = intent.getBooleanExtra("ocr", false)
-        PdfGenerationTask(this, pages, outputFile, ocr) label@{ isSuccess, error ->
+        val outputFile = File(externalCacheDir, ScanSettings.instance.pdfFilename)
+        PdfGenerationTask(this, pages, outputFile, ScanSettings.instance.ocr) label@{ isSuccess, error ->
             if (!isSuccess) {
                 Log.e(TAG, "Error generating PDF", error)
                 Toast.makeText(this@ScanActivity, error?.message, Toast.LENGTH_LONG)
@@ -170,14 +165,10 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
                 return@label
             }
 
-            if (null == fileprovider) {
-                fileprovider = BuildConfig.LIBRARY_PACKAGE_NAME
-            }
-
             // View generated PDF document with another compatible installed app
             val uri = FileProvider.getUriForFile(
                 this@ScanActivity,
-                "$fileprovider.fileprovider",
+                "${ScanSettings.instance.fileProvider}.fileprovider",
                 outputFile
             )
             val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -191,10 +182,10 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         if (textResId == 0) {
             userGuidanceTextView!!.visibility = View.INVISIBLE
         } else {
+            val settings = ScanSettings.instance
             userGuidanceTextView!!.visibility = View.VISIBLE
-            val detectionStatus = intent.getStringExtra("detection_status")
-            if (textResId == R.string.detection_status_custom && null != detectionStatus) {
-                userGuidanceTextView!!.text = detectionStatus
+            if (textResId == R.string.detection_status_custom && null != settings.detectionStatus) {
+                userGuidanceTextView!!.text = settings.detectionStatus
             }
             else {
                 userGuidanceTextView!!.setText(textResId)
@@ -256,6 +247,7 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
             } else {
                 val intent = Intent(this@ScanActivity, ImageProcessingActivity::class.java)
                 intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page)
+
                 startActivity(intent)
             }
         }

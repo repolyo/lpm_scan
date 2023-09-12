@@ -37,7 +37,7 @@ abstract class LpmScanPlatform extends PlatformInterface {
         'scanWithConfiguration($configuration) has not been implemented.');
   }
 
-  Future<Map<String, dynamic>?> generateDocument(
+  Future<String?> generateDocument(
       Map<String, dynamic> documentGenerationConfiguration) {
     throw UnimplementedError(
         'generateDocument($documentGenerationConfiguration) has not been implemented.');

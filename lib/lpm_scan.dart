@@ -16,7 +16,7 @@ class LpmScan {
     return LpmScanPlatform.instance.scanWithConfiguration(configuration);
   }
 
-  Future<Map<String, dynamic>?> generateDocument(
+  Future<String?> generateDocument(
       {Map<String, dynamic> configuration = defaultConfig}) {
     // var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };
     return LpmScanPlatform.instance.generateDocument(configuration);

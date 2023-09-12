@@ -12,6 +12,7 @@ import com.geniusscansdk.scanflow.ScanFlow
 import com.lexmark.lpm_scan.camera.ScanActivity
 import com.lexmark.lpm_scan.enhance.PdfGenerationTask
 import com.lexmark.lpm_scan.model.DocumentManager
+import com.lexmark.lpm_scan.model.ScanSettings
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -122,49 +123,28 @@ class LpmScanPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   }
 
   private fun scanWithConfig(poCall: MethodCall, poResult: Result) {
-    val detectionStatus: String? = poCall.argument("detection_status")
-    val pdfFilename: String? = poCall.argument("pdfFilename")
-    val fileprovider: String? = poCall.argument("fileprovider")
+    ScanSettings.instance.load(poCall)
 
-    val intent = Intent(activity, ScanActivity::class.java);
-    intent.putExtra("detection_status", detectionStatus)
-    intent.putExtra("pdfFilename", pdfFilename)
-    intent.putExtra("fileprovider", fileprovider)
-
-    activity?.startActivity(intent)
+    activity?.startActivity(Intent(activity, ScanActivity::class.java))
 //    poResult.success(emptyMap<String, Any>())
   }
 
   private fun generateDocument(poCall: MethodCall, poResult: Result) {
-    var fileprovider: String? = poCall.argument("fileprovider")
-    val location: String? = poCall.argument("externalCacheDir")
+    ScanSettings.instance.load(poCall)
+
     val pages = DocumentManager.getInstance(context).pages
-    val outputFile = File(context.externalCacheDir, "test.pdf")
+    val outputFile = File(context.externalCacheDir, ScanSettings.instance.pdfFilename)
 
-    print(location)
-
-    PdfGenerationTask(context, pages, outputFile, true) label@{ isSuccess, error ->
+    PdfGenerationTask(context, pages, outputFile, ScanSettings.instance.ocr) label@{ isSuccess, error ->
       if (!isSuccess) {
         Toast.makeText(activity, error?.message, Toast.LENGTH_LONG)
           .show()
         return@label
       }
 
-      if (null == fileprovider) {
-        fileprovider = BuildConfig.LIBRARY_PACKAGE_NAME
-      }
-
-      // View generated PDF document with another compatible installed app
-      val uri = FileProvider.getUriForFile(
-        activity!!,
-        "$fileprovider.fileprovider",
-        outputFile
-      )
-      val intent = Intent(Intent.ACTION_VIEW, uri)
-      intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-      context.startActivity(intent)
+      poResult.success(outputFile)
     }.execute()
 
-    poResult.success(emptyMap<String, Object>())
+    poResult.success(null)
   }
 }

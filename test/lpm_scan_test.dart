@@ -19,8 +19,8 @@ class MockLpmScanPlatform
       Future.value({});
 
   @override
-  Future<Map<String, dynamic>?> generateDocument(Map<String, dynamic> config) =>
-      Future.value({});
+  Future<String?> generateDocument(Map<String, dynamic> config) =>
+      Future.value("documentUrl");
 }
 
 void main() {
