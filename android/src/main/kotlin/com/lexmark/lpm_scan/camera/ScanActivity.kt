@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.geniusscansdk.camera.FileImageCaptureCallback
 import com.geniusscansdk.camera.FocusIndicator
 import com.geniusscansdk.camera.ScanFragment
@@ -26,8 +27,10 @@ import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.LicenseException
 import com.geniusscansdk.core.QuadStreamAnalyzer
 import com.geniusscansdk.core.RotationAngle
+import com.lexmark.lpm_scan.BuildConfig
 import com.lexmark.lpm_scan.R
 import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
+import com.lexmark.lpm_scan.enhance.PdfGenerationTask
 import com.lexmark.lpm_scan.model.DocumentManager
 import com.lexmark.lpm_scan.model.Page
 import java.io.File
@@ -38,11 +41,6 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
     private lateinit var scanFragment: ScanFragment
     private var userGuidanceTextView: TextView? = null
     private var cameraPermissionGranted = false
-
-    private val positiveButtonClick = { _: DialogInterface, _: Int ->
-        Toast.makeText(applicationContext,
-            android.R.string.yes, Toast.LENGTH_SHORT).show()
-    }
 
     private val negativeButtonClick = { dialog: DialogInterface, which: Int ->
         Toast.makeText(applicationContext,
@@ -135,9 +133,9 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
 
         builder.setTitle("Cancel")
         builder.setMessage("Aborting scan operation?")
-        builder.setPositiveButton(android.R.string.ok, { _: DialogInterface, _: Int ->
+        builder.setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
             finish()
-        })
+        }
 
         builder.show()
     }
@@ -147,31 +145,40 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         builder.setTitle("Leaving Lexmark App")
         builder.setMessage("Your scan has saved. Redirecting to your files app.")
         builder.setNegativeButton("Stay", negativeButtonClick)
-        builder.setPositiveButton("Continue", positiveButtonClick)
+        builder.setPositiveButton("Continue") { _: DialogInterface, _: Int ->
+            shareDocument()
+        }
         builder.show()
     }
 
     private fun shareDocument() {
+        var pdfFilename: String? = intent.getStringExtra("pdfFilename")
+        var fileprovider: String? = intent.getStringExtra("fileprovider")
         val pages = DocumentManager.getInstance(this).pages
-        val outputFile = File(externalCacheDir, "test.pdf")
-//        PdfGenerationTask(this, pages, outputFile, ocrSwitch.isChecked()) label@{ isSuccess, error ->
-//            if (!isSuccess) {
-//                Log.e(FragmentActivity.TAG, "Error generating PDF", error)
-//                Toast.makeText(this@MainActivity, error.getMessage(), Toast.LENGTH_LONG)
-//                    .show()
-//                return@label
-//            }
-//
-//            // View generated PDF document with another compatible installed app
-//            val uri = FileProvider.getUriForFile(
-//                this@ScanActivity,
-//                BuildConfig.APPLICATION_ID + ".fileprovider",
-//                outputFile
-//            )
-//            val intent = Intent(Intent.ACTION_VIEW, uri)
-//            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-//            startActivity(intent)
-//        }.execute()
+        val outputFile = File(externalCacheDir, pdfFilename)
+        val ocr = intent.getBooleanExtra("ocr", false)
+        PdfGenerationTask(this, pages, outputFile, ocr) label@{ isSuccess, error ->
+            if (!isSuccess) {
+                Log.e(TAG, "Error generating PDF", error)
+                Toast.makeText(this@ScanActivity, error?.message, Toast.LENGTH_LONG)
+                    .show()
+                return@label
+            }
+
+            if (null == fileprovider) {
+                fileprovider = BuildConfig.LIBRARY_PACKAGE_NAME
+            }
+
+            // View generated PDF document with another compatible installed app
+            val uri = FileProvider.getUriForFile(
+                this@ScanActivity,
+                "$fileprovider.fileprovider",
+                outputFile
+            )
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            startActivity(intent)
+        }.execute()
     }
 
     private fun updateUserGuidance(result: QuadStreamAnalyzer.Result) {

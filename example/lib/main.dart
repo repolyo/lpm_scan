@@ -51,13 +51,14 @@ class _MyAppState extends State<MyApp> {
     try {
       final scanConfiguration = {
         'source': 'camera',
-        'multiPage': true,
-        'ocrConfiguration': {
-          'languages': ['eng'],
-          'languagesDirectoryUrl': 'languageFolder.path'
-        },
+        // 'multiPage': true,
+        // 'ocrConfiguration': {
+        //   'languages': ['eng'],
+        //   'languagesDirectoryUrl': 'languageFolder.path'
+        // },
         'scan_button_text': 'Scan Me',
         'detection_status': 'Align tanch to fit screen...',
+        'pdfFilename': 'sample.pdf',
       };
 
       var scanResult = await _lpmScanPlugin.scanWithConfiguration(

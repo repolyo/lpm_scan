@@ -132,9 +132,8 @@ class ImageProcessingActivity : AppCompatActivity() {
     }
 
     fun savePage(view: View?) {
-        DocumentManager.getInstance(this).addPage(page)
-//        val intent = Intent(this, FlutterActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val intent = Intent(this, FlutterActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 //        startActivity(intent)
         finish()
     }
