@@ -33,7 +33,7 @@
     android:id="@+id/user_guidance"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_above="@id/captureButton"
+    android:layout_above="@id/bottomBar"
     android:layout_centerHorizontal="true"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="10dp"
@@ -41,31 +41,44 @@
     tools:text="Detection status"
     />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/bottomBar"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_toLeftOf="@id/user_guidance"
-        android:text="@string/cancel" />
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/captureButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="@string/capture" />
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/user_guidance"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
 
-    <Button
-        android:id="@+id/doneButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/user_guidance"
-        android:layout_marginBottom="20dp"
-        android:text="@string/done" />
+        <Button
+            android:id="@+id/captureButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:text="@string/capture" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/user_guidance"
+            android:layout_weight="1"
+            android:text="@string/done" />
+
+    </LinearLayout>
 
 </RelativeLayout>

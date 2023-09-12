@@ -27,7 +27,6 @@ import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.LicenseException
 import com.geniusscansdk.core.QuadStreamAnalyzer
 import com.geniusscansdk.core.RotationAngle
-import com.lexmark.lpm_scan.BuildConfig
 import com.lexmark.lpm_scan.R
 import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
 import com.lexmark.lpm_scan.enhance.PdfGenerationTask
@@ -95,12 +94,13 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         if (!cameraPermissionGranted) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), PERMISSION_REQUEST_CODE)
         }
-
-//        doneButton.isEnabled = DocumentManager.getInstance(this).pages.isNotEmpty()
     }
 
     override fun onResume() {
         super.onResume()
+
+        val doneButton = findViewById<Button>(R.id.doneButton)
+        doneButton.isEnabled = DocumentManager.getInstance(this).pages.isNotEmpty()
         if (cameraPermissionGranted) {
             scanFragment!!.initializeCamera()
         }
@@ -136,6 +136,7 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         builder.setTitle("Cancel")
         builder.setMessage("Aborting scan operation?")
         builder.setPositiveButton(android.R.string.ok) { _: DialogInterface, _: Int ->
+            DocumentManager.getInstance(this).clear(this)
             finish()
         }
 

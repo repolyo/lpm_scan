@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory.Options
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.geniusscansdk.core.FilterType
 import com.geniusscansdk.core.RotationAngle
@@ -132,6 +133,16 @@ class ImageProcessingActivity : AppCompatActivity() {
     }
 
     fun savePage(view: View?) {
+        Toast.makeText(applicationContext,
+            "Saving page...", Toast.LENGTH_SHORT).show()
+    }
+
+    fun retryPage(view: View?) {
+        Toast.makeText(applicationContext,
+            "Rescanning page...", Toast.LENGTH_SHORT).show()
+    }
+
+    fun nextPage(view: View?) {
         DocumentManager.getInstance(this).addPage(page)
         val intent = Intent(this, ScanActivity::class.java)
         intent.addFlags(

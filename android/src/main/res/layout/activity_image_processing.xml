@@ -8,8 +8,45 @@
     tools:context=".enhance.ImageProcessingActivity">
 
 <LinearLayout
-    android:id="@+id/toolbar"
+    android:id="@+id/bottomBar"
     android:layout_alignParentBottom="true"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="#888888"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/retryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/rescan"
+        android:onClick="retryPage"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/next"
+        android:onClick="nextPage"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/save"
+        android:onClick="savePage"/>
+
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/toolbar"
+    android:layout_above="@id/bottomBar"
     android:layout_width="fill_parent"
     android:layout_height="50dp"
     android:paddingLeft="10dp"
@@ -55,15 +92,6 @@
         android:layout_weight="1"
         android:src="@drawable/ic_tune_white_24dp"
         android:onClick="changeEnhancement"
-        />
-
-    <ImageView
-        style="?borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/ic_check_white_24dp"
-        android:onClick="savePage"
         />
 
 </LinearLayout>

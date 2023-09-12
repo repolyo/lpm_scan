@@ -27,6 +27,11 @@ public class DocumentManager {
         pages.add(page);
     }
 
+    public void clear(Context context) {
+        pages.clear();
+        clearOldPages(context);
+    }
+
     private static void clearOldPages(Context context) {
         File folder = context.getExternalFilesDir(null);
         for (File file : folder.listFiles()) {
