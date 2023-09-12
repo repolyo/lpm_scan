@@ -5,7 +5,7 @@ import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.BitmapFactory.Options;
+import android.graphics.BitmapFactory.Options
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.geniusscansdk.core.FilterType
 import com.geniusscansdk.core.RotationAngle
 import com.lexmark.lpm_scan.R
+import com.lexmark.lpm_scan.camera.ScanActivity
 import com.lexmark.lpm_scan.model.DocumentManager
 import com.lexmark.lpm_scan.model.Page
 import com.lexmark.lpm_scan.processing.BorderDetectionActivity
-import io.flutter.embedding.android.FlutterActivity
 import java.io.File
 
 
@@ -132,9 +132,15 @@ class ImageProcessingActivity : AppCompatActivity() {
     }
 
     fun savePage(view: View?) {
-        val intent = Intent(this, FlutterActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//        startActivity(intent)
+        DocumentManager.getInstance(this).addPage(page)
+        val intent = Intent(this, ScanActivity::class.java)
+        intent.addFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_NEW_TASK
+        )
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+
+        startActivity(intent)
         finish()
     }
 

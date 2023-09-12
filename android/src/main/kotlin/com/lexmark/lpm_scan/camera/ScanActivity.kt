@@ -155,6 +155,11 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
         var pdfFilename: String? = intent.getStringExtra("pdfFilename")
         var fileprovider: String? = intent.getStringExtra("fileprovider")
         val pages = DocumentManager.getInstance(this).pages
+
+        if (null == pdfFilename) {
+            pdfFilename = "test.pdf";
+        }
+
         val outputFile = File(externalCacheDir, pdfFilename)
         val ocr = intent.getBooleanExtra("ocr", false)
         PdfGenerationTask(this, pages, outputFile, ocr) label@{ isSuccess, error ->
@@ -252,7 +257,6 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
                 val intent = Intent(this@ScanActivity, ImageProcessingActivity::class.java)
                 intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page)
                 startActivity(intent)
-
             }
         }
     }
