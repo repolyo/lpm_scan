@@ -1,0 +1,11 @@
+framework module GSSDKCore {
+  umbrella header "GSSDKCore.h"
+
+  export *
+  module * { export * }
+}
+
+module GSSDKCore.Swift {
+  header "GSSDKCore-Swift.h"
+  requires objc
+}

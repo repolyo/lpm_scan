@@ -20,4 +20,12 @@ Genius code SDK wrapper
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
+
+  s.preserve_paths = 'GSSDKCore.xcframework/**/*'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework GSSDKCore' }
+  s.vendored_frameworks = 'GSSDKCore.xcframework'
+
+  s.preserve_paths = 'GSSDKOCR.xcframework/**/*'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework GSSDKOCR' }
+  s.vendored_frameworks = 'GSSDKOCR.xcframework'
 end

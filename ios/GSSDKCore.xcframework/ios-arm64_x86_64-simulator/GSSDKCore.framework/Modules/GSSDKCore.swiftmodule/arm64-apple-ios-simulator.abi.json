@@ -1,0 +1,878 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "GSKDocumentGenerator",
+        "printedName": "GSKDocumentGenerator",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "generate",
+            "printedName": "generate(_:configuration:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GSKPDFDocument",
+                "printedName": "GSSDKCore.GSKPDFDocument",
+                "usr": "c:objc(cs)GSKPDFDocument"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GSKDocumentGeneratorConfiguration",
+                "printedName": "GSSDKCore.GSKDocumentGeneratorConfiguration",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGenerator(im)generate:configuration:error:",
+            "mangledName": "$s9GSSDKCore20GSKDocumentGeneratorC8generate_13configurationySo14GSKPDFDocumentC_AA0bC13ConfigurationCtKF",
+            "moduleName": "GSSDKCore",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GSKDocumentGenerator",
+                "printedName": "GSSDKCore.GSKDocumentGenerator",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGenerator"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGenerator(im)init",
+            "mangledName": "$s9GSSDKCore20GSKDocumentGeneratorCACycfc",
+            "moduleName": "GSSDKCore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGenerator",
+        "mangledName": "$s9GSSDKCore20GSKDocumentGeneratorC",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "GSKDocumentGeneratorConfiguration",
+        "printedName": "GSKDocumentGeneratorConfiguration",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "outputFilePath",
+            "printedName": "outputFilePath",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(py)outputFilePath",
+            "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC14outputFilePathSSvp",
+            "moduleName": "GSSDKCore",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(im)outputFilePath",
+                "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC14outputFilePathSSvg",
+                "moduleName": "GSSDKCore",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pdfFontFilePath",
+            "printedName": "pdfFontFilePath",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(py)pdfFontFilePath",
+            "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC15pdfFontFilePathSSSgvp",
+            "moduleName": "GSSDKCore",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(im)pdfFontFilePath",
+                "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC15pdfFontFilePathSSSgvg",
+                "moduleName": "GSSDKCore",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(outputFilePath:pdfFontFilePath:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GSKDocumentGeneratorConfiguration",
+                "printedName": "GSSDKCore.GSKDocumentGeneratorConfiguration",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(im)initWithOutputFilePath:pdfFontFilePath:",
+            "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC14outputFilePath07pdfFontfG0ACSS_SSSgtcfc",
+            "moduleName": "GSSDKCore",
+            "objc_name": "initWithOutputFilePath:pdfFontFilePath:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GSKDocumentGeneratorConfiguration",
+                "printedName": "GSSDKCore.GSKDocumentGeneratorConfiguration",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(im)init",
+            "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationCACycfc",
+            "moduleName": "GSSDKCore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(dictionary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GSKDocumentGeneratorConfiguration",
+                "printedName": "GSSDKCore.GSKDocumentGeneratorConfiguration",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@CM@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration(im)initWithDictionary:error:",
+            "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC10dictionaryACSDySSypG_tKcfc",
+            "moduleName": "GSSDKCore",
+            "objc_name": "initWithDictionary:error:",
+            "declAttributes": [
+              "Dynamic",
+              "Convenience",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Convenience"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@GSSDKCore@objc(cs)GSKDocumentGeneratorConfiguration",
+        "mangledName": "$s9GSSDKCore33GSKDocumentGeneratorConfigurationC",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "GSSDKCoreResources",
+        "printedName": "GSSDKCoreResources",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "bundle",
+            "printedName": "bundle",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bundle",
+                "printedName": "Foundation.Bundle",
+                "usr": "c:objc(cs)NSBundle"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSSDKCoreResources(cpy)bundle",
+            "mangledName": "$s9GSSDKCore0A9ResourcesC6bundleSo8NSBundleCvpZ",
+            "moduleName": "GSSDKCore",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bundle",
+                    "printedName": "Foundation.Bundle",
+                    "usr": "c:objc(cs)NSBundle"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSSDKCoreResources(cm)bundle",
+                "mangledName": "$s9GSSDKCore0A9ResourcesC6bundleSo8NSBundleCvgZ",
+                "moduleName": "GSSDKCore",
+                "static": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GSSDKCoreResources",
+                "printedName": "GSSDKCore.GSSDKCoreResources",
+                "usr": "c:@M@GSSDKCore@objc(cs)GSSDKCoreResources"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@GSSDKCore@objc(cs)GSSDKCoreResources(im)init",
+            "mangledName": "$s9GSSDKCore0A9ResourcesCACycfc",
+            "moduleName": "GSSDKCore",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@GSSDKCore@objc(cs)GSSDKCoreResources",
+        "mangledName": "$s9GSSDKCore0A9ResourcesC",
+        "moduleName": "GSSDKCore",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "GSKPDFDocument",
+        "printedName": "GSKPDFDocument",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(dictionary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GSKPDFDocument",
+                "printedName": "GSSDKCore.GSKPDFDocument",
+                "usr": "c:objc(cs)GSKPDFDocument"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@CM@GSSDKCore@@objc(cs)GSKPDFDocument(im)initWithDictionary:error:",
+            "mangledName": "$sSo14GSKPDFDocumentC9GSSDKCoreE10dictionaryABSDySSypG_tKcfc",
+            "moduleName": "GSSDKCore",
+            "objc_name": "initWithDictionary:error:",
+            "declAttributes": [
+              "Dynamic",
+              "Convenience",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Convenience"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)GSKPDFDocument",
+        "moduleName": "GSSDKCore",
+        "isOpen": true,
+        "objc_name": "GSKPDFDocument",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGenerator.swift",
+      "kind": "StringLiteral",
+      "offset": 729,
+      "length": 14,
+      "value": "\"AdobeRGB1998\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGenerator.swift",
+      "kind": "StringLiteral",
+      "offset": 753,
+      "length": 5,
+      "value": "\"icc\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGenerator.swift",
+      "kind": "BooleanLiteral",
+      "offset": 780,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGeneratorConfiguration.swift",
+      "kind": "StringLiteral",
+      "offset": 192,
+      "length": 33,
+      "value": "\"GSSDKCore.GSKDocumentGeneratorConfiguration\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGeneratorConfiguration.swift",
+      "kind": "StringLiteral",
+      "offset": 904,
+      "length": 15,
+      "value": "\"outputFileUrl\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGeneratorConfiguration.swift",
+      "kind": "StringLiteral",
+      "offset": 1102,
+      "length": 34,
+      "value": "\"Missing or invalid outputFileUrl\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKDocumentGeneratorConfiguration.swift",
+      "kind": "StringLiteral",
+      "offset": 1192,
+      "length": 16,
+      "value": "\"pdfFontFileUrl\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 299,
+      "length": 7,
+      "value": "\"title\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 353,
+      "length": 10,
+      "value": "\"password\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 410,
+      "length": 10,
+      "value": "\"keywords\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 468,
+      "length": 7,
+      "value": "\"pages\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "Array",
+      "offset": 500,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 612,
+      "length": 10,
+      "value": "\"imageUrl\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 773,
+      "length": 29,
+      "value": "\"Missing or invalid imageUrl\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 1012,
+      "length": 29,
+      "value": "\"imageUrl is not a valid URL\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "StringLiteral",
+      "offset": 1097,
+      "length": 16,
+      "value": "\"hocrTextLayout\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "FloatLiteral",
+      "offset": 1248,
+      "length": 4,
+      "value": "8.27"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/prj-ios\/GSSDK\/Core\/Sources\/PDF\/GSKPDFDocument+Dictionary.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1262,
+      "length": 1,
+      "value": "0"
+    }
+  ]
+}

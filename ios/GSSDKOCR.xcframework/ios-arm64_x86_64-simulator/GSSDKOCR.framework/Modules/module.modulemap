@@ -1,0 +1,6 @@
+framework module GSSDKOCR {
+  umbrella header "GSSDKOCR.h"
+
+  export *
+  module * { export * }
+}
