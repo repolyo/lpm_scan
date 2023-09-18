@@ -55,17 +55,17 @@ final class PostProcessingViewController: UIViewController {
             imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
 
-        enhancementBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(edit))
+        enhancementBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(edit))
 
         let correctionDistortionBarButtonItem = UIBarButtonItem(customView: curvatureButton)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(add))
 
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(crop)),
             UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done)),
+            enhancementBarButtonItem,
             correctionDistortionBarButtonItem,
-            enhancementBarButtonItem
+            UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(crop)),
         ]
     }
 
@@ -85,8 +85,9 @@ final class PostProcessingViewController: UIViewController {
     }
 
     @objc private func crop() {
-        let editFrameViewController = EditFrameViewController(scan: scan)
-        self.navigationController?.pushViewController(editFrameViewController, animated: true)
+//        let editFrameViewController = EditFrameViewController(scan: scan)
+        let editFrameViewController = SampleViewController(scan: scan)
+        self.navigationController?.pushViewController(editFrameViewController, animated: false)
     }
 
     @objc private func edit() {
