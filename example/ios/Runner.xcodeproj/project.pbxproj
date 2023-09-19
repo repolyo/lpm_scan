@@ -16,6 +16,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		D0277C222AB3451C008E4FD7 /* GSSDKCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0277C202AB3451C008E4FD7 /* GSSDKCore.xcframework */; };
+		D0277C232AB3451C008E4FD7 /* GSSDKCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0277C202AB3451C008E4FD7 /* GSSDKCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D0277C232AB3451C008E4FD7 /* GSSDKCore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +66,8 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB5EC853EE7F5B701987F1D8 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0277C202AB3451C008E4FD7 /* GSSDKCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GSSDKCore.xcframework; path = .symlinks/plugins/lpm_scan/ios/../../../../../../ios/GSSDKCore.xcframework; sourceTree = "<group>"; };
+		D0277C212AB3451C008E4FD7 /* GSSDKOCR.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GSSDKOCR.xcframework; path = .symlinks/plugins/lpm_scan/ios/../../../../../../ios/GSSDKOCR.xcframework; sourceTree = "<group>"; };
 		F3119736C966B6440776142C /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		F95E3CD89D645279337C19AC /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BE685E6F7CBB2A1D45F6DC /* Pods_Runner.framework in Frameworks */,
+				D0277C222AB3451C008E4FD7 /* GSSDKCore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +104,8 @@
 		3E8C6538051766FB44D43E8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0277C202AB3451C008E4FD7 /* GSSDKCore.xcframework */,
+				D0277C212AB3451C008E4FD7 /* GSSDKOCR.xcframework */,
 				BB5EC853EE7F5B701987F1D8 /* Pods_Runner.framework */,
 				07B36510C7FBC323DDDF6627 /* Pods_RunnerTests.framework */,
 			);

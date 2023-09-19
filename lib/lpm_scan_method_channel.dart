@@ -27,7 +27,7 @@ class MethodChannelLpmScan extends LpmScanPlatform {
     var ret = await methodChannel.invokeMethod(
         'scanWithConfiguration', configuration);
 
-    return ret as Map<String, dynamic>;
+    return Map<String, dynamic>.from(ret as Map);
   }
 
   @override

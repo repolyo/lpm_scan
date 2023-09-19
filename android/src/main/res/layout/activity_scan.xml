@@ -9,15 +9,15 @@
     android:background="@android:color/black"
     tools:context=".camera.ScanActivity">
 
-<FrameLayout
-    android:id="@+id/scan_fragment_layout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_alignParentTop="true"
-    android:layout_above="@id/user_guidance"
-    tools:layout="@layout/scan_fragment"
-    />
+    <FrameLayout
+        android:id="@+id/scan_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_above="@id/user_guidance"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        tools:layout="@layout/scan_fragment" />
 
 <com.geniusscansdk.camera.DefaultFocusIndicator
     android:id="@+id/focus_indicator"

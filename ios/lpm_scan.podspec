@@ -21,11 +21,7 @@ Genius code SDK wrapper
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
 
-  s.preserve_paths = 'GSSDKCore.xcframework/**/*'
-  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework GSSDKCore' }
-  s.vendored_frameworks = 'GSSDKCore.xcframework'
-
-  s.preserve_paths = 'GSSDKOCR.xcframework/**/*'
-  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework GSSDKOCR' }
-  s.vendored_frameworks = 'GSSDKOCR.xcframework'
+  s.preserve_paths = 'GSSDKCore.xcframework', 'GSSDKOCR.xcframework'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework GSSDKCore -framework GSSDKOCR' }
+  s.vendored_frameworks = 'GSSDKCore.xcframework', 'GSSDKOCR.xcframework'
 end

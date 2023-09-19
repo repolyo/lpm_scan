@@ -27,8 +27,8 @@ import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.LicenseException
 import com.geniusscansdk.core.QuadStreamAnalyzer
 import com.geniusscansdk.core.RotationAngle
+import com.geniusscansdk.scanflow.ScanFlow
 import com.lexmark.lpm_scan.R
-import com.lexmark.lpm_scan.enhance.ImageProcessingActivity
 import com.lexmark.lpm_scan.enhance.PdfGenerationTask
 import com.lexmark.lpm_scan.model.DocumentManager
 import com.lexmark.lpm_scan.model.Page
@@ -38,6 +38,8 @@ import java.util.UUID
 
 
 class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
+    final val SCAN_RESULT_KEY = "SCAN_RESULT_KEY"
+
     private lateinit var scanFragment: ScanFragment
     private var userGuidanceTextView: TextView? = null
     private var cameraPermissionGranted = false
@@ -246,10 +248,14 @@ class ScanActivity : AppCompatActivity(), CameraCallbackProvider {
             } else if (exception != null) {
                 throw RuntimeException(exception)
             } else {
-                val intent = Intent(this@ScanActivity, ImageProcessingActivity::class.java)
-                intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page)
+//                val intent = Intent(this@ScanActivity, ImageProcessingActivity::class.java)
+//                intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page)
+//                startActivity(intent)
 
-                startActivity(intent)
+                val data = Intent()
+                data.putExtra(SCAN_RESULT_KEY, page.originalImage.absolutePath)
+                setResult(RESULT_OK, data)
+                finish()
             }
         }
     }

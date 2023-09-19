@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:lpm_scan/lpm_scan.dart';
 
@@ -65,7 +68,9 @@ class _MyAppState extends State<MyApp> {
           configuration: scanConfiguration);
 
       // Here is how you can display the resulting document:
-      String documentUrl = scanResult?['multiPageDocumentUrl'];
+      // String documentUrl = scanResult?['multiPageDocumentUrl'];
+      String scannedImage = scanResult?['SCAN_RESULT_KEY'];
+      print(scannedImage);
       // await OpenFile.open(documentUrl.replaceAll("file://", ''));
 
       // You can also generate your document separately from selected pages:
@@ -94,6 +99,34 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    const String viewType = 'video_player_view';
+    const Map<String, dynamic> creationParams = <String, dynamic>{};
+
+    final video = PlatformViewLink(
+      viewType: viewType,
+      surfaceFactory: (context, controller) {
+        return AndroidViewSurface(
+          controller: controller as AndroidViewController,
+          gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+          hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+        );
+      },
+      onCreatePlatformView: (params) {
+        return PlatformViewsService.initSurfaceAndroidView(
+          id: params.id,
+          viewType: viewType,
+          layoutDirection: TextDirection.ltr,
+          creationParams: creationParams,
+          creationParamsCodec: const StandardMessageCodec(),
+          onFocus: () {
+            params.onFocusChanged(true);
+          },
+        )
+          ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+          ..create();
+      },
+    );
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -104,6 +137,7 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Running on: $_platformVersion\n'),
+              // Flexible(child: video),
               ElevatedButton(
                 onPressed: initiateScan,
                 child: const Text('Start Scan'),
